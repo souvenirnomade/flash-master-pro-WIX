@@ -21,7 +21,7 @@
 @keyframes pulse-alert{0%,100%{box-shadow:0 0 0 0 rgba(192,85,69,0)}50%{box-shadow:0 0 28px 4px rgba(192,85,69,.28)}}
 @keyframes scan{0%{transform:translateY(-100%)}100%{transform:translateY(300%)}}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#060606;background-image:radial-gradient(ellipse 100% 45% at 50% -5%,rgba(200,164,90,.055) 0%,transparent 65%);min-height:auto;position:relative;font-family:var(--font-sans);color:var(--t)}
+body{background:#060606;background-image:radial-gradient(ellipse 100% 45% at 50% -5%,rgba(200,164,90,.055) 0%,transparent 65%);min-height:100vh;font-family:var(--font-sans);color:var(--t)}
 .hd{position:relative;text-align:center;padding:52px 20px 36px;border-bottom:1px solid var(--or-b);overflow:hidden;z-index:1}
 .hd::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 90% at 50% 0%,rgba(200,164,90,.065) 0%,transparent 70%);pointer-events:none}
 .hd::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:220px;height:1px;background:linear-gradient(to right,transparent,var(--or),transparent)}
@@ -264,7 +264,7 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
 .mx-lbl{color:var(--tp)}.mx-val{font-family:var(--font-serif);font-size:16px;color:#fff}
 .mx-conseil{margin-top:10px;font-size:10.5px;line-height:1.8;color:var(--tm)}
 /* Modal "Comment mesurer" */
-.mesure-modal-overlay{display:none;position:absolute;top:0;left:0;right:0;bottom:0;min-height:100%;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+.mesure-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
 .mesure-modal-overlay.open{display:flex;animation:fade-in .2s ease}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
 .mesure-modal{background:#1a1a1a;border:1px solid rgba(200,164,90,.4);border-radius:6px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.7)}
@@ -591,7 +591,7 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--or);margin-bottom:10px">📐 Mesure Posemètre — f/ lue</div>
       <div class="g2">
         <div class="ch"><label>f/ lue posemètre</label>
-          <input type="number" id="c_fmes_num" value="2.8" min="0.7" max="64" step="0.1"
+          <input type="number" id="c_fmes_num" value="" min="0.7" max="64" step="0.1" placeholder="ex: 2.8"
             oninput="calcContinue()"
             style="width:100%;padding:9px 8px;background:var(--s3);border:1px solid var(--or-b);border-radius:2px;color:#fff;font-size:13px;font-family:Georgia,serif;text-align:center">
         </div>
@@ -721,7 +721,7 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       <!-- f/ mesuré en troisième -->
       <div class="g2" style="margin-bottom:10px">
         <div class="ch"><label>③ f/ mesuré (posemètre)</label>
-          <input type="number" id="mx_amb_fbase" value="5.6" min="0.7" max="64" step="0.1" onchange="mxCalcAmbiante()" oninput="mxCalcAmbiante()"
+          <input type="number" id="mx_amb_fbase" value="" min="0.7" max="64" step="0.1" placeholder="ex: 5.6" onchange="mxCalcAmbiante()" oninput="mxCalcAmbiante()"
             style="width:100%;padding:10px 12px;background:var(--s3);border:1px solid var(--or-b);border-radius:2px;color:#fff;font-size:14px;font-family:Georgia,serif">
         </div>
         <div class="ch"><label>+ dixièmes IL (0.0 à 0.9)</label>
@@ -1369,11 +1369,11 @@ function toggleFlashDetail(){
 // ── Modal "Comment mesurer" ──
 function openMesureModal(){
   document.getElementById('mesure-modal-overlay').classList.add('open');
-  /* overflow:hidden sans effet dans iframe Wix */
+  document.body.style.overflow='hidden';
 }
 function closeMesureModal(){
   document.getElementById('mesure-modal-overlay').classList.remove('open');
-  /* restore overflow sans effet dans iframe Wix */
+  document.body.style.overflow='';
 }
 function closeMesureModalOutside(e){
   if(e.target===document.getElementById('mesure-modal-overlay')) closeMesureModal();
@@ -1614,8 +1614,9 @@ function calcContinue(){
          Défini dans SRC_WATTS → scaling via fMes_effective
        ═══════════════════════════════════════════════════════════════════ */
 
-    /* Vitesse de mesure = vitesse boîtier cible (même valeur en lumière continue) */
-    const vMes = vTarget;
+    /* Vitesse de mesure = snapshot fixé à la création de la source (data-vmes)
+       vMes reste fixe quand vTarget change → le ratio vMes/vTarget évolue → P change ✓ */
+    const vMes = parseFloat(srcEl.getAttribute('data-vmes') || '0.0167') || 0.0167;
 
     /* f/ mesurée (posemètre) avec dixièmes IL */
     const fMes = fMesNum * Math.pow(Math.sqrt(2), fMesTenths);
@@ -2887,20 +2888,5 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 </div>
-
-<script>
-/* Wix iframe auto-resize — envoie la hauteur réelle au parent Wix */
-(function(){
-  function sendHeight(){
-    var h = document.documentElement.scrollHeight || document.body.scrollHeight;
-    window.parent.postMessage({type:'wix-resize',height:h},'*');
-  }
-  sendHeight();
-  if(window.ResizeObserver){
-    new ResizeObserver(sendHeight).observe(document.body);
-  }
-  window.addEventListener('load', sendHeight);
-})();
-</script>
 </body>
 </html>
