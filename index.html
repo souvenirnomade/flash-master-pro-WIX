@@ -407,7 +407,7 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
     <div id="section_carnation">
       <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--or);margin-bottom:6px">🎨 Carnation de peau <span class="refl-badge rb-actif" id="badge_carn" style="margin-left:6px">✓ actif</span></div>
       <select id="skin_tone" onchange="majCarn()" style="width:100%;margin-bottom:8px">
-        <option value="-2.33">① Albinos / Très très claire (−2.33 IL)</option><option value="-2">② Très claire / Porcelaine (−2 IL)</option><option value="-1.67">③ Claire / Ivoire (−1.67 IL)</option><option value="-1.5">③ Claire Rosée (−1.5 IL)</option><option value="-1.33">③ Claire / Beige clair (−1.33 IL)</option><option value="-1.17">③ Claire Naturelle (−1.17 IL)</option><option value="-1">④ Médium Claire (−1 IL)</option><option value="-0.83">④ Médium Claire Dorée (−0.83 IL)</option><option value="0" selected>⑤ Médium — Référence (0 IL)</option><option value="0.17">⑤ Médium / Beige naturel (+0.17 IL)</option><option value="0.33">⑤ Médium Dorée / Sable (+0.33 IL)</option><option value="0.5">⑤ Médium Olive / Miel (+0.5 IL)</option><option value="0.67">⑤ Médium Foncée / Caramel (+0.67 IL)</option><option value="0.83">⑥ Foncée / Bronze (+0.83 IL)</option><option value="1">⑥ Foncée / Brun chaud (+1 IL)</option><option value="1.17">⑥ Foncée Profonde / Acajou (+1.17 IL)</option><option value="1.33">⑦ Très Foncée / Chocolat (+1.33 IL)</option><option value="1.5">⑦ Très Foncée / Espresso (+1.5 IL)</option><option value="1.67">⑧ Ébène Clair (+1.67 IL)</option><option value="2">⑧ Ébène / Très Sombre (+2 IL)</option><option value="2.33">⑧ Ébène Profond / Nuit (+2.33 IL)</option>
+        <option value="-2.33">Albinos / Très très claire (−2.33 IL)</option><option value="-2">Tres claire / Porcelaine (−2 IL)</option><option value="-1.67">Claire Ivoire (−1.67 IL)</option><option value="-1.5">Claire Rosee (−1.5 IL)</option><option value="-1.33">Claire Beige clair (−1.33 IL)</option><option value="-1.17">Claire Naturelle (−1.17 IL)</option><option value="-1">Medium Claire (−1 IL)</option><option value="-0.83">Medium Claire Doree (−0.83 IL)</option><option value="0" selected>Medium Reference (0 IL)</option><option value="0.17">Medium Beige naturel (+0.17 IL)</option><option value="0.33">Medium Doree / Sable (+0.33 IL)</option><option value="0.5">Medium Olive / Miel (+0.5 IL)</option><option value="0.67">Medium Foncee / Caramel (+0.67 IL)</option><option value="0.83">Foncee Bronze (+0.83 IL)</option><option value="1">Foncee Brun chaud (+1 IL)</option><option value="1.17">Foncee Profonde / Acajou (+1.17 IL)</option><option value="1.33">Tres Foncee Chocolat (+1.33 IL)</option><option value="1.5">Tres Foncee Espresso (+1.5 IL)</option><option value="1.67">Ebene Clair (+1.67 IL)</option><option value="2">Ebene Tres Sombre (+2 IL)</option><option value="2.33">Ebene Profond / Nuit (+2.33 IL)</option>
       </select>
       <div class="carn-ap"><div class="carn-rd" id="carn_rd" style="background:#C68642"></div><div><div class="carn-txt" id="carn_nm">Médium — Référence</div><div class="carn-il" id="carn_il">0 IL</div></div></div>
     </div>
@@ -771,17 +771,17 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       <!-- 1. Carnation -->
       <div class="ch" style="margin-bottom:8px"><label>Carnation du sujet</label>
         <select id="mx_carn" onchange="mxCalcSujet()">
-          <option value="-2.33">① Albinos / Très très claire (−2.33 IL)</option><option value="-2">② Très claire / Porcelaine (−2 IL)</option>
-          <option value="-1.67">③ Claire / Ivoire (−1.67 IL)</option><option value="-1.5">③ Claire Rosée (−1.5 IL)</option>
-          <option value="-1.33">③ Claire / Beige clair (−1.33 IL)</option><option value="-1.17">③ Claire Naturelle (−1.17 IL)</option>
-          <option value="-1">④ Médium Claire (−1 IL)</option><option value="-0.83">④ Médium Claire Dorée (−0.83 IL)</option>
-          <option value="0" selected>⑤ Médium — Référence (0 IL)</option><option value="0.17">⑤ Médium / Beige naturel (+0.17 IL)</option>
-          <option value="0.33">⑤ Médium Dorée / Sable (+0.33 IL)</option><option value="0.5">⑤ Médium Olive / Miel (+0.5 IL)</option>
-          <option value="0.67">⑤ Médium Foncée / Caramel (+0.67 IL)</option><option value="0.83">⑥ Foncée / Bronze (+0.83 IL)</option>
-          <option value="1">⑥ Foncée / Brun chaud (+1 IL)</option><option value="1.17">⑥ Foncée Profonde / Acajou (+1.17 IL)</option>
-          <option value="1.33">⑦ Très Foncée / Chocolat (+1.33 IL)</option><option value="1.5">⑦ Très Foncée / Espresso (+1.5 IL)</option>
-          <option value="1.67">⑧ Ébène Clair (+1.67 IL)</option><option value="2">⑧ Ébène / Très Sombre (+2 IL)</option>
-          <option value="2.33">⑧ Ébène Profond / Nuit (+2.33 IL)</option>
+          <option value="-2.33">Albinos / Très très claire (−2.33 IL)</option><option value="-2">Tres claire / Porcelaine (−2 IL)</option>
+          <option value="-1.67">Claire Ivoire (−1.67 IL)</option><option value="-1.5">Claire Rosee (−1.5 IL)</option>
+          <option value="-1.33">Claire Beige clair (−1.33 IL)</option><option value="-1.17">Claire Naturelle (−1.17 IL)</option>
+          <option value="-1">Medium Claire (−1 IL)</option><option value="-0.83">Medium Claire Doree (−0.83 IL)</option>
+          <option value="0" selected>Medium Reference (0 IL)</option><option value="0.17">Medium Beige naturel (+0.17 IL)</option>
+          <option value="0.33">Medium Doree / Sable (+0.33 IL)</option><option value="0.5">Medium Olive / Miel (+0.5 IL)</option>
+          <option value="0.67">Medium Foncee / Caramel (+0.67 IL)</option><option value="0.83">Foncee Bronze (+0.83 IL)</option>
+          <option value="1">Foncee Brun chaud (+1 IL)</option><option value="1.17">Foncee Profonde / Acajou (+1.17 IL)</option>
+          <option value="1.33">Tres Foncee Chocolat (+1.33 IL)</option><option value="1.5">Tres Foncee Espresso (+1.5 IL)</option>
+          <option value="1.67">Ebene Clair (+1.67 IL)</option><option value="2">Ebene Tres Sombre (+2 IL)</option>
+          <option value="2.33">Ebene Profond / Nuit (+2.33 IL)</option>
         </select>
       </div>
 
@@ -915,7 +915,7 @@ function setIntent(optiVal){
 function _updateIntentBanner(){
   const fTarget=parseFloat((document.getElementById('f_target')||{value:'5.6'}).value)||5.6;
   const vApn=parseFloat((document.getElementById('v_apn')||{value:'0.008'}).value)||0.008;
-  const skin=modeMesure==='incident'?parseFloat((document.getElementById('skin_tone')||{value:'0'}).value)||0:0;
+  const _stEl2=document.getElementById('skin_tone'); const skin=modeMesure==='incident'?parseFloat((_stEl2&&_stEl2.options[_stEl2.selectedIndex]?_stEl2.options[_stEl2.selectedIndex].value:_stEl2?_stEl2.value:'0')||'0')||0:0;
   const mat=modeMesure==='incident'?parseFloat((document.getElementById('matiere')||{value:'0'}).value)||0:0;
   const fCible=fTarget*Math.pow(Math.sqrt(2),skin+mat+lastOptiValue);
   const isHSS=vApn<0.005;
@@ -1034,10 +1034,10 @@ function majCarn(){
   const sel=document.getElementById('skin_tone');
   const txt=sel.options[sel.selectedIndex].text;
   const val=parseFloat(sel.value)||0;
-  // Nom : retirer le préfixe numéroté ①②... et la parenthèse IL
-  const nom=txt.replace(/^[①-⑨]\s*/,'').replace(/\s*\([^)]*\)\s*$/,'').trim();
+  // Nom : retirer la parenthèse finale (valeur IL)
+  const nom=txt.replace(/\s*\([^)]*\)\s*$/, '').trim();
   const ilTxt=val===0?'0 IL':(val>0?'+':'')+val+' IL';
-  document.getElementById('carn_rd').style.background=CARN_COL[sel.value]||'#C68642';
+  document.getElementById('carn_rd').style.background=CARN_COL[String(val)]||CARN_COL[sel.value]||'#C68642';
   document.getElementById('carn_nm').textContent=nom;
   document.getElementById('carn_il').textContent=ilTxt;
   calcFlashPerSource(lastOptiValue);
@@ -1128,7 +1128,7 @@ function calcFlashPerSource(optiValue){
   const fTarget    = parseFloat((document.getElementById('f_target')||{value:'5.6'}).value) || 5.6;
   const vApn       = parseFloat((document.getElementById('v_apn')||{value:'0.008'}).value) || 0.008;
   const isoApn     = parseFloat((document.getElementById('iso_apn')||{value:'100'}).value) || 100;
-  const skinMod    = modeMesure==='incident' ? parseFloat((document.getElementById('skin_tone')||{value:'0'}).value)||0 : 0;
+  const _stEl=document.getElementById('skin_tone'); const skinMod = modeMesure==='incident' ? parseFloat((_stEl&&_stEl.options[_stEl.selectedIndex]?_stEl.options[_stEl.selectedIndex].value:_stEl?_stEl.value:'0')||'0')||0 : 0;
   const matiereMod = modeMesure==='incident' ? parseFloat((document.getElementById('matiere')||{value:'0'}).value)||0 : 0;
 
   // Cible globale : fTarget × √2^(carn + mat + opti)  — même loi que Mixte
