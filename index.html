@@ -1033,11 +1033,13 @@ const CARN_COL={'-2.33':'#F5E6D8','-2':'#F0DDD0','-1.67':'#EDD5C0','-1.5':'#E8CD
 function majCarn(){
   const sel=document.getElementById('skin_tone');
   const txt=sel.options[sel.selectedIndex].text;
-  const nom=txt.replace(/^\S+\s/,'').replace(/\s*\(.*\)/,'').trim();
-  const ilM=txt.match(/([+-][\d.]+)\s*IL/);
+  const val=parseFloat(sel.value)||0;
+  // Nom : retirer le préfixe numéroté ①②... et la parenthèse IL
+  const nom=txt.replace(/^[①-⑨]\s*/,'').replace(/\s*\([^)]*\)\s*$/,'').trim();
+  const ilTxt=val===0?'0 IL':(val>0?'+':'')+val+' IL';
   document.getElementById('carn_rd').style.background=CARN_COL[sel.value]||'#C68642';
   document.getElementById('carn_nm').textContent=nom;
-  document.getElementById('carn_il').textContent=ilM?ilM[0]:'0 IL';
+  document.getElementById('carn_il').textContent=ilTxt;
   calcFlashPerSource(lastOptiValue);
 }
 function majRefl(){
